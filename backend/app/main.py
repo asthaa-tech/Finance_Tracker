@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 
+from app.api.v1.router import router as api_v1_router
+
 app = FastAPI(
     title="FinTrack API",
     description="Personal Finance Tracker API",
     version="0.1.0",
 )
-#app=Fastapi() -- creates application, @app.get("/") - defines a route for the root endpoint, which returns a welcome message and status. The /health endpoint checks the health of the application and returns a status of "healthy".
+
+app.include_router(api_v1_router)
+
 
 @app.get("/")
 async def root():
